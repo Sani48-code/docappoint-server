@@ -2,10 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
-const { toNodeHandler } = require('better-auth/node');
 const connectDB = require('./config/db');
-const auth = require('./config/auth');
 
+const authRoutes = require('./routes/auth.routes');
 const doctorRoutes = require('./routes/doctor.routes');
 const bookingRoutes = require('./routes/booking.routes');
 
@@ -18,11 +17,10 @@ app.use(cors({
   credentials: true
 }));
 
-app.all('/api/auth/*any', toNodeHandler(auth));
-
 app.use(express.json());
 app.use(cookieParser());
 
+app.use('/api/auth', authRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/bookings', bookingRoutes);
 
