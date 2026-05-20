@@ -8,7 +8,8 @@ const doctorRoutes = require('./routes/doctor.routes');
 const bookingRoutes = require('./routes/booking.routes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+
+connectDB();
 
 app.use(cors({
   origin: '*',
@@ -22,12 +23,6 @@ app.use('/api/bookings', bookingRoutes);
 
 app.get('/', (req, res) => {
   res.send('DocAppoint Server is running');
-});
-
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
 });
 
 module.exports = app;
