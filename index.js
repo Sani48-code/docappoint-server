@@ -13,9 +13,16 @@ const app = express();
 connectDB();
 
 app.use(cors({
-  origin: ['https://docappoint-client.vercel.app', 'http://localhost:5173'],
-  credentials: true
+  origin: [
+    'http://localhost:5173',
+    'https://docappoint-client-final.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+app.options('*', cors());
 
 app.use(express.json());
 app.use(cookieParser());
