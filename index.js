@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: process.env.CLIENT_URL,
+  origin: '*',
   credentials: true
 }));
 app.use(express.json());
@@ -29,3 +29,5 @@ connectDB().then(() => {
     console.log(`Server running on port ${PORT}`);
   });
 });
+
+module.exports = app;
