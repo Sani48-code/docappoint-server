@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Doctor = require('../models/Doctor.model');
 
@@ -127,7 +127,7 @@ const doctors = [
 
 const seedDoctors = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(MONGODB_URI);
     console.log('MongoDB connected');
 
     await Doctor.deleteMany({});
